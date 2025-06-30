@@ -10,7 +10,11 @@ import {
 import axios from "axios";
 import { toast, Bounce } from "react-toastify";
 
-export default function ModalCreate() {
+interface Props {
+  emitUpdate(): void;
+}
+
+export const ModalCreate: React.FC<Props> = ({ emitUpdate }) => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [nameValue, setNameValue] = useState("");
@@ -47,17 +51,16 @@ export default function ModalCreate() {
       password: passwordValue,
     };
 
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URI}/users`,
-      body,
-      config
-    ).catch(() => {
-      setLoading(false);
-    });
+    const response = await axios
+      .post(`${process.env.NEXT_PUBLIC_API_URI}/users`, body, config)
+      .catch(() => {
+        setLoading(false);
+      });
 
     if (response?.status === 200) {
       setOpen(false);
       setLoading(false);
+      emitUpdate();
       toast.success("Usuário criado!", {
         position: "top-right",
         autoClose: 3000,
@@ -215,4 +218,4 @@ export default function ModalCreate() {
       </Dialog>
     </div>
   );
-}
+};

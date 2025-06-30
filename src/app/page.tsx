@@ -7,7 +7,6 @@ import axios from "axios";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import Customer from "@/types/Customer";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
-import ModalCreate from "@/components/ModalCreate";
 
 export const dynamic = "force-dynamic";
 const override: CSSProperties = {
@@ -187,8 +186,6 @@ function Body() {
             </span>
           </div>
         </form>
-
-        <ModalCreate />
       </div>
     </main>
   );

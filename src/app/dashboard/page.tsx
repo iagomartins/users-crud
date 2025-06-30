@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import { useQueryClient } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { ClipLoader } from "react-spinners";
+import { ModalCreate } from "@/components/ModalCreate";
 
 export const dynamic = "force-dynamic";
 const override: CSSProperties = {
@@ -118,6 +119,7 @@ function Body() {
             ))}
           </tbody>
         </table>
+        <ModalCreate emitUpdate={UpdateList} />
       </main>
     </>
   );
